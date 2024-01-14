@@ -43,6 +43,13 @@ public class GildedRose
             };
         }
 
+        if (name.StartsWith("Conjured"))
+        {
+            return sellIn <= 0
+                ? quality - 4
+                : quality - 2;
+        }
+
         return sellIn <= 0
             ? quality - 2
             : quality - 1;
