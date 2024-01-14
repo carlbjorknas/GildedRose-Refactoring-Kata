@@ -18,9 +18,10 @@ public class GildedRose
             if (item.Name == "Sulfuras, Hand of Ragnaros")
                 continue;
 
+            item.SellIn--;
+
             if (item.Name == "Aged Brie")
             {
-                item.SellIn--;
                 if (item.Quality < 50)
                     item.Quality++;
                 continue;
@@ -28,8 +29,6 @@ public class GildedRose
 
             if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
             {
-                item.SellIn--;
-
                 item.Quality = item.SellIn switch
                 {
                     < 0 => 0,
@@ -42,9 +41,7 @@ public class GildedRose
                     item.Quality = 50;
 
                 continue;
-            }
-            
-            item.SellIn--;
+            }                       
 
             item.Quality = item.SellIn < 0
                 ? item.Quality - 2
