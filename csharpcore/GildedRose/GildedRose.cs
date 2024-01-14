@@ -31,12 +31,12 @@ public class GildedRose
 
                 item.Quality++;
 
-                if (item.SellIn < 11)
+                if (item.SellIn <= 10)
                 {
                     item.Quality++;
                 }
 
-                if (item.SellIn < 6)
+                if (item.SellIn <= 5)
                 {
                     item.Quality++;
                 }
