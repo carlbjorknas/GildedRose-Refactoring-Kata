@@ -35,7 +35,8 @@ public static class TextTestFixture
                 Quality = 49
             },
             // this conjured item does not work properly yet
-            new Item {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6}
+            new Item {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6},
+            new Item {Name = "Conjured Vest", SellIn = 3, Quality = 13}
         };
 
         var app = new GildedRose(items);
