@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace GildedRoseKata;
 
@@ -19,32 +20,40 @@ public class GildedRose
                 continue;
 
             item.SellIn--;
-
-            if (item.Name == "Aged Brie")
-            {
-                item.Quality++;
-            }
-            else if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
-            {
-                item.Quality = item.SellIn switch
-                {
-                    < 0 => 0,
-                    < 5 => item.Quality + 2,
-                    < 10 => item.Quality + 3,
-                    _ => item.Quality + 1,
-                };
-            }
-            else
-            {
-                item.Quality = item.SellIn < 0
-                    ? item.Quality - 2
-                    : item.Quality - 1;
-            }
-
-            if (item.Quality < 0)
-                item.Quality = 0;
-            else if (item.Quality > 50)
-                item.Quality = 50;
+            var newQuality = CalcualteNewQuality(item);
+            item.Quality = AdjustQualityToLimits(newQuality);
         }
+    }
+
+    private static int CalcualteNewQuality(Item item)
+    {
+        if (item.Name == "Aged Brie")
+            return item.Quality++;
+
+        if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
+        {
+            return item.SellIn switch
+            {
+                < 0 => 0,
+                < 5 => item.Quality + 2,
+                < 10 => item.Quality + 3,
+                _ => item.Quality + 1,
+            };
+        }
+
+        return item.SellIn < 0
+            ? item.Quality - 2
+            : item.Quality - 1;
+    }
+
+    private static int AdjustQualityToLimits(int quality)
+    {
+        if (quality < 0)
+            return 0;
+
+        if (quality > 50)
+            return 50;
+
+        return quality;
     }
 }
