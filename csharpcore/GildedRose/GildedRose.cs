@@ -18,14 +18,14 @@ public class GildedRose
             if (item.Name == "Sulfuras, Hand of Ragnaros")
                 continue;
             
-            var newQuality = CalcualteNewQuality(item.Name, item.SellIn, item.Quality);
+            var newQuality = CalculateNewQuality(item.Name, item.SellIn, item.Quality);
             item.Quality = AdjustQualityToLimits(newQuality);
 
             item.SellIn--;
         }
     }
 
-    private static int CalcualteNewQuality(string name, int sellIn, int quality)
+    private static int CalculateNewQuality(string name, int sellIn, int quality)
     {
         if (name == "Aged Brie")
             return sellIn <= 0
