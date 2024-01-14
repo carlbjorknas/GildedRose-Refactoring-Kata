@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace GildedRoseKata;
 
@@ -28,7 +27,9 @@ public class GildedRose
     private static int CalcualteNewQuality(Item item)
     {
         if (item.Name == "Aged Brie")
-            return item.Quality++;
+            return item.SellIn < 0
+            ? item.Quality + 2
+            : item.Quality + 1;
 
         if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
         {
