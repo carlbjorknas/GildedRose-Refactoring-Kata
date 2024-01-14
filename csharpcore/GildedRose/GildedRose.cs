@@ -36,8 +36,8 @@ public class GildedRose
             return item.SellIn switch
             {
                 < 0 => 0,
-                < 5 => item.Quality + 2,
-                < 10 => item.Quality + 3,
+                < 5 => item.Quality + 3,
+                < 10 => item.Quality + 2,
                 _ => item.Quality + 1,
             };
         }
