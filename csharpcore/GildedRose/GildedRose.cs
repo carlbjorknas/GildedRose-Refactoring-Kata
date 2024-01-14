@@ -19,32 +19,32 @@ public class GildedRose
                 continue;
 
             item.SellIn--;
-            var newQuality = CalcualteNewQuality(item);
+            var newQuality = CalcualteNewQuality(item.Name, item.SellIn, item.Quality);
             item.Quality = AdjustQualityToLimits(newQuality);
         }
     }
 
-    private static int CalcualteNewQuality(Item item)
+    private static int CalcualteNewQuality(string name, int sellIn, int quality)
     {
-        if (item.Name == "Aged Brie")
-            return item.SellIn < 0
-            ? item.Quality + 2
-            : item.Quality + 1;
+        if (name == "Aged Brie")
+            return sellIn < 0
+            ? quality + 2
+            : quality + 1;
 
-        if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
+        if (name == "Backstage passes to a TAFKAL80ETC concert")
         {
-            return item.SellIn switch
+            return sellIn switch
             {
                 < 0 => 0,
-                < 5 => item.Quality + 3,
-                < 10 => item.Quality + 2,
-                _ => item.Quality + 1,
+                < 5 => quality + 3,
+                < 10 => quality + 2,
+                _ => quality + 1,
             };
         }
 
-        return item.SellIn < 0
-            ? item.Quality - 2
-            : item.Quality - 1;
+        return sellIn < 0
+            ? quality - 2
+            : quality - 1;
     }
 
     private static int AdjustQualityToLimits(int quality)
