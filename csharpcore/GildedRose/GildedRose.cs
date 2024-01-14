@@ -18,7 +18,15 @@ public class GildedRose
             if (_items[i].Name == "Sulfuras, Hand of Ragnaros")
                 continue;
 
-            if (_items[i].Name != "Aged Brie" && _items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
+            if (_items[i].Name == "Aged Brie")
+            {
+                _items[i].SellIn = _items[i].SellIn - 1;
+                if (_items[i].Quality < 50)
+                    _items[i].Quality = _items[i].Quality + 1;
+                continue;
+            }
+            
+            if (_items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
             {
                 if (_items[i].Quality > 0)
                 {
@@ -31,24 +39,21 @@ public class GildedRose
                 {
                     _items[i].Quality = _items[i].Quality + 1;
 
-                    if (_items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
+                    if (_items[i].SellIn < 11)
                     {
-                        if (_items[i].SellIn < 11)
+                        if (_items[i].Quality < 50)
                         {
-                            if (_items[i].Quality < 50)
-                            {
-                                _items[i].Quality = _items[i].Quality + 1;
-                            }
-                        }
-
-                        if (_items[i].SellIn < 6)
-                        {
-                            if (_items[i].Quality < 50)
-                            {
-                                _items[i].Quality = _items[i].Quality + 1;
-                            }
+                            _items[i].Quality = _items[i].Quality + 1;
                         }
                     }
+
+                    if (_items[i].SellIn < 6)
+                    {
+                        if (_items[i].Quality < 50)
+                        {
+                            _items[i].Quality = _items[i].Quality + 1;
+                        }
+                    }                    
                 }
             }
 
@@ -56,26 +61,16 @@ public class GildedRose
 
             if (_items[i].SellIn < 0)
             {
-                if (_items[i].Name != "Aged Brie")
+                if (_items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
                 {
-                    if (_items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
+                    if (_items[i].Quality > 0)
                     {
-                        if (_items[i].Quality > 0)
-                        {
-                            _items[i].Quality = _items[i].Quality - 1;
-                        }
-                    }
-                    else
-                    {
-                        _items[i].Quality = 0;
+                        _items[i].Quality = _items[i].Quality - 1;
                     }
                 }
                 else
                 {
-                    if (_items[i].Quality < 50)
-                    {
-                        _items[i].Quality = _items[i].Quality + 1;
-                    }
+                    _items[i].Quality = 0;
                 }
             }
         }
