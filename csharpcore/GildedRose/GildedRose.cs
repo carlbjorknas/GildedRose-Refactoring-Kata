@@ -22,12 +22,9 @@ public class GildedRose
 
             if (item.Name == "Aged Brie")
             {
-                if (item.Quality < 50)
-                    item.Quality++;
-                continue;
+                item.Quality++;
             }
-
-            if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
+            else if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
             {
                 item.Quality = item.SellIn switch
                 {
@@ -36,19 +33,18 @@ public class GildedRose
                     < 10 => item.Quality + 3,
                     _ => item.Quality + 1,
                 };
-
-                if (item.Quality > 50)
-                    item.Quality = 50;
-
-                continue;
-            }                       
-
-            item.Quality = item.SellIn < 0
-                ? item.Quality - 2
-                : item.Quality - 1;
+            }
+            else
+            {
+                item.Quality = item.SellIn < 0
+                    ? item.Quality - 2
+                    : item.Quality - 1;
+            }
 
             if (item.Quality < 0)
                 item.Quality = 0;
+            else if (item.Quality > 50)
+                item.Quality = 50;
         }
     }
 }
